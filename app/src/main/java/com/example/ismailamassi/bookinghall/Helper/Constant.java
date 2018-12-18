@@ -7,10 +7,10 @@ import com.example.ismailamassi.bookinghall.Fragments.CustomerFragments.Customer
 import com.example.ismailamassi.bookinghall.Fragments.CustomerFragments.CustomerHomepageFragment;
 import com.example.ismailamassi.bookinghall.Fragments.CustomerFragments.CustomerProfileFragment;
 import com.example.ismailamassi.bookinghall.Fragments.CustomerFragments.CustomerSettingsFragment;
-import com.example.ismailamassi.bookinghall.Fragments.ForgetPasswordFragment;
-import com.example.ismailamassi.bookinghall.Fragments.LoginFragment;
-import com.example.ismailamassi.bookinghall.Fragments.ResetPasswordFragment;
-import com.example.ismailamassi.bookinghall.Fragments.SignupFragment;
+import com.example.ismailamassi.bookinghall.Fragments.LoginSystemFragments.ForgetPasswordFragment;
+import com.example.ismailamassi.bookinghall.Fragments.LoginSystemFragments.LoginFragment;
+import com.example.ismailamassi.bookinghall.Fragments.LoginSystemFragments.ResetPasswordFragment;
+import com.example.ismailamassi.bookinghall.Fragments.LoginSystemFragments.SignupFragment;
 import com.example.ismailamassi.bookinghall.R;
 
 //

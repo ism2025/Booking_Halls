@@ -5,12 +5,19 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.CustomerFragments.CustomerBooksFragment">
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_customerBooks"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:foregroundGravity="center" />
+        android:layout_height="match_parent">
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_customerBooks"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:foregroundGravity="center" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </android.support.constraint.ConstraintLayout>
 </FrameLayout>
