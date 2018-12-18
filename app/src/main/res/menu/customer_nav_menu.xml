@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/homepage"
+            android:contentDescription="home"
+            android:title="Home" />
+        <item
+            android:id="@+id/profile"
+            android:contentDescription="home"
+            android:title="Profile" />
+        <item
+            android:id="@+id/setting"
+            android:contentDescription="home"
+            android:title="Setting" />
+        <item
+            android:id="@+id/books"
+            android:contentDescription="home"
+            android:title="Books" />
+
+        <item
+            android:id="@+id/about"
+            android:contentDescription="home"
+            android:title="About" />
+        <item
+            android:id="@+id/privacyPolicy"
+            android:contentDescription="home"
+            android:title="PrivacyPolicy" />
+    </group>
+    <item android:title="Other">
+        <menu>
+            <item
+                android:id="@+id/signOut"
+                android:contentDescription="Sign Out"
+                android:title="Sign Out" />
+            <item
+                android:id="@+id/shere"
+                android:contentDescription="Shere"
+                android:title="Shere" />
+        </menu>
+    </item>
+
+</menu>
