@@ -13,7 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ismailamassi.bookinghall.Helper.Constant;
+import com.example.ismailamassi.bookinghall.Helper.Constants;
 import com.example.ismailamassi.bookinghall.Helper.SystemControl;
 import com.example.ismailamassi.bookinghall.Model.Customer;
 import com.example.ismailamassi.bookinghall.Model.Owner;
@@ -69,8 +69,8 @@ public class SignupFragment extends Fragment {
         tv_haveAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(Constant.CONTAINER_ID, Constant
-                        .LOGIN_FRAGMENT).addToBackStack(Constant.FRAGMENT_LOG).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(Constants.CONTAINER_ID, Constants
+                        .LOGIN_FRAGMENT).addToBackStack(Constants.FRAGMENT_LOG).commit();
             }
         });
         btn_createAccount.setOnClickListener(new View.OnClickListener() {
@@ -94,13 +94,13 @@ public class SignupFragment extends Fragment {
                     if (selectedAccountType == R.id.rb_customer) {
                         new Customer(2, fname, lname, email, password, "https://api.androidhive.info/images/glide/large/cacw.jpg", phoneNumber);
                         Toast.makeText(getActivity(), "Create New Account has Successfully .", Toast.LENGTH_SHORT).show();
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(Constant.CONTAINER_ID, Constant
-                                .LOGIN_FRAGMENT).addToBackStack(Constant.FRAGMENT_LOG).commit();
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(Constants.CONTAINER_ID, Constants
+                                .LOGIN_FRAGMENT).addToBackStack(Constants.FRAGMENT_LOG).commit();
                     } else if (selectedAccountType == R.id.rb_owner) {
                         new Owner(2, fname, lname, email, password, "https://api.androidhive.info/images/glide/large/bourne.jpg", phoneNumber);
                         Toast.makeText(getActivity(), "Create New Account has Successfully .", Toast.LENGTH_SHORT).show();
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(Constant.CONTAINER_ID, Constant
-                                .LOGIN_FRAGMENT).addToBackStack(Constant.FRAGMENT_LOG).commit();
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(Constants.CONTAINER_ID, Constants
+                                .LOGIN_FRAGMENT).addToBackStack(Constants.FRAGMENT_LOG).commit();
                     }
                 } else {
                     Toast.makeText(getActivity(), "Must Fill each Failed at minimum 6 digit .", Toast.LENGTH_SHORT).show();

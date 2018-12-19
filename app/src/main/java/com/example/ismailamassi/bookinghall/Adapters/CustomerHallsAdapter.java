@@ -12,7 +12,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.ismailamassi.bookinghall.Activites.CustomerMainActivity;
-import com.example.ismailamassi.bookinghall.Helper.Constant;
+import com.example.ismailamassi.bookinghall.Helper.Constants;
 import com.example.ismailamassi.bookinghall.Model.Hall;
 import com.example.ismailamassi.bookinghall.R;
 import com.squareup.picasso.Picasso;
@@ -49,18 +49,19 @@ public class CustomerHallsAdapter extends RecyclerView.Adapter<CustomerHallsAdap
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final Hall hall = halls.get(position);
         Picasso.with(context).load(
-                hall.getPhoto()).placeholder(R.drawable.bg_circle)
-                .error(R.drawable.p16).into(holder.iv_hallPhoto);
+                hall.getPhoto()).placeholder(R.drawable.placeholder)
+                .error(R.drawable.error).into(holder.iv_hallPhoto);
 
         holder.tv_hallName.setText(hall.getName());
+        holder.tv_hall_price.setText(hall.getPrice() + " $");
         holder.rb_hallRate.setRating(hall.getRate());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("hall", hall);
-                Constant.HALL_PAGE_FRAGMENT.setArguments(bundle);
-                ((CustomerMainActivity) context).getSupportFragmentManager().beginTransaction().replace(Constant.CUSTOMER_CONTENT_ID, Constant.HALL_PAGE_FRAGMENT).addToBackStack(Constant.FRAGMENT_LOG).commit();
+                Constants.HALL_PAGE_FRAGMENT.setArguments(bundle);
+                ((CustomerMainActivity) context).getSupportFragmentManager().beginTransaction().replace(Constants.CUSTOMER_CONTENT_ID, Constants.HALL_PAGE_FRAGMENT).addToBackStack(Constants.FRAGMENT_LOG).commit();
             }
         });
     }
@@ -72,7 +73,7 @@ public class CustomerHallsAdapter extends RecyclerView.Adapter<CustomerHallsAdap
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_hallPhoto;
-        TextView tv_hallName;
+        TextView tv_hallName, tv_hall_price;
         RatingBar rb_hallRate;
         CardView cardView;
 
@@ -81,6 +82,7 @@ public class CustomerHallsAdapter extends RecyclerView.Adapter<CustomerHallsAdap
             iv_hallPhoto = itemView.findViewById(R.id.iv_hallPhoto);
             tv_hallName = itemView.findViewById(R.id.tv_hallName);
             rb_hallRate = itemView.findViewById(R.id.rb_hallRate);
+            tv_hall_price = itemView.findViewById(R.id.tv_hall_price);
             cardView = itemView.findViewById(R.id.cardView);
         }
     }

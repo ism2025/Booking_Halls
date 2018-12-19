@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.OwnerFragments.OwnerNewHallFragment">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/et_hallName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="36dp"
+            android:ems="10"
+            android:hint="Hall Name"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_hallDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Hall Descrepation"
+            android:inputType="textMultiLine"
+            app:layout_constraintEnd_toEndOf="@+id/et_hallName"
+            app:layout_constraintStart_toStartOf="@+id/et_hallName"
+            app:layout_constraintTop_toBottomOf="@+id/et_hallName" />
+
+        <EditText
+            android:id="@+id/et_hallPhoneNumber"
+            android:layout_width="0dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Hall Phone Number"
+            android:inputType="phone"
+            app:layout_constraintEnd_toEndOf="@+id/et_hallDesc"
+            app:layout_constraintStart_toStartOf="@+id/et_hallDesc"
+            app:layout_constraintTop_toBottomOf="@+id/et_hallDesc" />
+
+        <EditText
+            android:id="@+id/et_hallLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Hall Location"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="@+id/et_hallPhoneNumber"
+            app:layout_constraintStart_toStartOf="@+id/et_hallPhoneNumber"
+            app:layout_constraintTop_toBottomOf="@+id/et_hallPhoneNumber" />
+
+        <EditText
+            android:id="@+id/et_hallPrice"
+            android:layout_width="395dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Hall Price"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="@+id/et_hallLocation"
+            app:layout_constraintStart_toStartOf="@+id/et_hallLocation"
+            app:layout_constraintTop_toBottomOf="@+id/et_hallLocation" />
+
+        <Button
+            android:id="@+id/btn_loadPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:text="Select Photo"
+            app:layout_constraintEnd_toEndOf="@+id/et_hallPrice"
+            app:layout_constraintStart_toStartOf="@+id/et_hallPrice"
+            app:layout_constraintTop_toBottomOf="@+id/et_hallPrice" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="80dp"
+            android:text="Save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_loadPhoto" />
+    </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>

@@ -1,7 +1,6 @@
 package com.example.ismailamassi.bookinghall.Activites;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -16,7 +15,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.ismailamassi.bookinghall.Helper.Constant;
+import com.example.ismailamassi.bookinghall.Helper.Constants;
+import com.example.ismailamassi.bookinghall.Helper.PrefManager;
+import com.example.ismailamassi.bookinghall.Helper.SystemControl;
+import com.example.ismailamassi.bookinghall.Model.Owner;
 import com.example.ismailamassi.bookinghall.R;
 
 public class OwnerMainActivity extends AppCompatActivity {
@@ -42,6 +44,8 @@ public class OwnerMainActivity extends AppCompatActivity {
     ImageView iv_userPhoto;
     TextView tv_username, tv_accountType;
 
+    PrefManager prefManager;
+
     private static final String TAG_HOMEPAGE = "homePage";
     private static final String TAG_PROFILE = "profile";
     private static final String TAG_SETTINGS = "settings";
@@ -59,6 +63,8 @@ public class OwnerMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_main);
 
+        prefManager = new PrefManager(OwnerMainActivity.this);
+
         bindViews();
         mHandler = new Handler();
         setUpNavigationView();
@@ -67,6 +73,12 @@ public class OwnerMainActivity extends AppCompatActivity {
             CURRENT_TAG = TAG_HOMEPAGE;
             loadHomeFragment();
         }
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SystemControl.startFragment(OwnerMainActivity.this, Constants.OWNER_CONTENT_ID, Constants.OWNER_NEW_HALL_FRAGMENT);
+            }
+        });
     }
 
     private void bindViews() {
@@ -95,7 +107,7 @@ public class OwnerMainActivity extends AppCompatActivity {
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
                         android.R.anim.fade_out);
-                fragmentTransaction.replace(Constant.OWNER_CONTENT_ID, fragment, CURRENT_TAG);
+                fragmentTransaction.replace(Constants.OWNER_CONTENT_ID, fragment, CURRENT_TAG);
                 fragmentTransaction.commitAllowingStateLoss();
             }
         };
@@ -160,6 +172,7 @@ public class OwnerMainActivity extends AppCompatActivity {
                         CURRENT_TAG = TAG_PRIVACY_POLICY;
                         break;
                     case R.id.signOut:
+                        prefManager.setSignin(false);
                         startActivity(new Intent(OwnerMainActivity.this, MainActivity.class));
                         finish();
                         break;
@@ -194,25 +207,25 @@ public class OwnerMainActivity extends AppCompatActivity {
         switch (navItemIndex) {
             case 0:
                 // home
-                return Constant.OWNER_HOMEPAGE_FRAGMENT;
+                return Constants.OWNER_HOMEPAGE_FRAGMENT;
             case 1:
                 // profile
-                return Constant.CUSTMOR_PROFILE_FRAGMENT;
+                return Constants.CUSTMOR_PROFILE_FRAGMENT;
             case 2:
                 //settings
-                return Constant.CUSTMOR_SETTINGS_FRAGMENT;
+                return Constants.CUSTMOR_SETTINGS_FRAGMENT;
             case 3:
                 // books
-                return Constant.OWNER_HOMEPAGE_FRAGMENT;
-//              return Constant.OWNER_HALLS_FRAGMENT;
+                return Constants.OWNER_HOMEPAGE_FRAGMENT;
+//              return Constants.OWNER_HALLS_FRAGMENT;
             case 4:
                 // about
-                return Constant.ABOUT_FRAGMENT;
+                return Constants.ABOUT_FRAGMENT;
             case 5:
                 // privacy policy
-                return Constant.PRIVACY_POLICY_FRAGMENT;
+                return Constants.PRIVACY_POLICY_FRAGMENT;
             default:
-                return Constant.CUSTMOR_HOMEPAGE_FRAGMENT;
+                return Constants.CUSTMOR_HOMEPAGE_FRAGMENT;
         }
     }
 

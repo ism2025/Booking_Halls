@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.ismailamassi.bookinghall.Adapters.OwnerHallBooksAdapter;
-import com.example.ismailamassi.bookinghall.Helper.Constant;
+import com.example.ismailamassi.bookinghall.Helper.Constants;
 import com.example.ismailamassi.bookinghall.Model.Hall;
 import com.example.ismailamassi.bookinghall.R;
 
@@ -45,7 +45,7 @@ public class OwnerHallBooksFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Bundle bundle = Constant.OWNER_HOMEPAGE_FRAGMENT.getArguments();
+        Bundle bundle = Constants.OWNER_HOMEPAGE_FRAGMENT.getArguments();
         Hall hall = (Hall) bundle.getSerializable("hall");
         if (hall.getBooks().size() == 0) {
             rv_ownerHallBooks.setVisibility(View.GONE);

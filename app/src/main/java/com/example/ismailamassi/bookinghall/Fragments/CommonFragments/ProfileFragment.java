@@ -10,8 +10,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.ismailamassi.bookinghall.Helper.Constants;
+import com.example.ismailamassi.bookinghall.Helper.PrefManager;
 import com.example.ismailamassi.bookinghall.Model.Customer;
 import com.example.ismailamassi.bookinghall.Model.Owner;
+import com.example.ismailamassi.bookinghall.Model.User;
 import com.example.ismailamassi.bookinghall.R;
 import com.squareup.picasso.Picasso;
 
@@ -44,8 +47,11 @@ public class ProfileFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
-        if (getActivity().getIntent() != null && getActivity().getIntent().hasExtra("customer")) {
-            Customer customer = (Customer) getActivity().getIntent().getSerializableExtra("user");
+        PrefManager prefManager = new PrefManager(getContext());
+
+        User user = prefManager.getCurrnetUser();
+        if (user instanceof Customer) {
+            Customer customer = (Customer) user;
             Picasso.with(getContext()).load(customer.getPhoto()).placeholder(R.drawable.bg_circle).error(R.drawable.p16).into(iv_userPhoto);
             tv_username.setText(customer.getfName() + " " + customer.getlName());
             tv_phoneNumber.setText(customer.getPhoneNumber() + "");
@@ -55,8 +61,8 @@ public class ProfileFragment extends Fragment {
             tv_typeAccount.setText("Customer");
             tv_numberAllBooks.setVisibility(View.GONE);
             tv_numAllBooks.setVisibility(View.GONE);
-        } else if (getActivity().getIntent() != null && getActivity().getIntent().hasExtra("owner")) {
-            Owner owner = (Owner) getActivity().getIntent().getSerializableExtra("user");
+        } else if (user instanceof Owner) {
+            Owner owner = (Owner) user;
             Picasso.with(getContext()).load(owner.getPhoto()).placeholder(R.drawable.bg_circle).error(R.drawable.p16).into(iv_userPhoto);
             tv_username.setText(owner.getfName() + " " + owner.getlName());
             tv_phoneNumber.setText(owner.getPhoneNumber() + "");

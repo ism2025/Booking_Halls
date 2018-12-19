@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ismailamassi.bookinghall.Helper.Constant;
+import com.example.ismailamassi.bookinghall.Helper.Constants;
 import com.example.ismailamassi.bookinghall.Helper.SystemControl;
 import com.example.ismailamassi.bookinghall.Model.User;
 import com.example.ismailamassi.bookinghall.R;
@@ -54,7 +54,7 @@ public class ResetPasswordFragment extends Fragment {
         captcha = getRandomNumberString();
         tv_captcha.setText(captcha);
         bundle = getArguments();
-        user = (User) bundle.getSerializable(Constant.USER_FORGET_PASSWORD);
+        user = (User) bundle.getSerializable(Constants.USER_FORGET_PASSWORD);
 
         onClickItems();
     }
@@ -80,8 +80,8 @@ public class ResetPasswordFragment extends Fragment {
                         user.setPassword(newPassword);
                         Toast.makeText(getActivity(), "Change Password is Successfully", Toast.LENGTH_SHORT).show();
                         getActivity().getSupportFragmentManager().beginTransaction().replace
-                                (Constant.CONTAINER_ID, Constant.LOGIN_FRAGMENT)
-                                .addToBackStack(Constant.FRAGMENT_LOG).commit();
+                                (Constants.CONTAINER_ID, Constants.LOGIN_FRAGMENT)
+                                .addToBackStack(Constants.FRAGMENT_LOG).commit();
                     }
                 } else {
                     Toast.makeText(getActivity(), "Please Enter Correct Captcha ", Toast.LENGTH_SHORT).show();

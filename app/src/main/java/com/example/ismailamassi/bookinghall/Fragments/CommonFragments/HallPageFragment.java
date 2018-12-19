@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ismailamassi.bookinghall.Helper.Constant;
+import com.example.ismailamassi.bookinghall.Helper.Constants;
 import com.example.ismailamassi.bookinghall.Model.Book;
 import com.example.ismailamassi.bookinghall.Model.Customer;
 import com.example.ismailamassi.bookinghall.Model.Hall;
@@ -26,7 +26,7 @@ import com.squareup.picasso.Picasso;
  */
 public class HallPageFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
 
-    TextView tv_hallName, tv_hallRate, tv_locationDesc, tv_phoneNumberDesc;
+    TextView tv_hallName, tv_hallRate, tv_locationDesc, tv_phoneNumberDesc, tv_hallPrice;
     ImageView iv_hallPhoto;
     Button btn_bookNow;
 
@@ -51,14 +51,15 @@ public class HallPageFragment extends Fragment implements DatePickerDialog.OnDat
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Bundle hallBundle = Constant.HALL_PAGE_FRAGMENT.getArguments();
+        Bundle hallBundle = Constants.HALL_PAGE_FRAGMENT.getArguments();
         customer = (Customer) getActivity().getIntent().getSerializableExtra("user");
         hall = (Hall) hallBundle.getSerializable("hall");
         tv_hallName.setText(hall.getName());
         tv_hallRate.setText(hall.getRate() + "");
         tv_locationDesc.setText(hall.getLocation());
         tv_phoneNumberDesc.setText(hall.getPhoneNumber());
-        Picasso.with(getContext()).load(hall.getPhoto()).placeholder(R.drawable.bg_circle).error(R.drawable.p16).into(iv_hallPhoto);
+        tv_hallPrice.setText(hall.getPrice() + " $");
+        Picasso.with(getContext()).load(hall.getPhoto()).placeholder(R.drawable.placeholder).error(R.drawable.error).into(iv_hallPhoto);
         onClickItems();
     }
 
@@ -77,6 +78,7 @@ public class HallPageFragment extends Fragment implements DatePickerDialog.OnDat
         tv_hallRate = view.findViewById(R.id.tv_hallRate);
         tv_locationDesc = view.findViewById(R.id.tv_locationDesc);
         tv_phoneNumberDesc = view.findViewById(R.id.tv_phoneNumberDesc);
+        tv_hallPrice = view.findViewById(R.id.tv_hallPrice);
         btn_bookNow = view.findViewById(R.id.btn_bookNow);
         iv_hallPhoto = view.findViewById(R.id.iv_hallPhoto);
     }
@@ -90,6 +92,6 @@ public class HallPageFragment extends Fragment implements DatePickerDialog.OnDat
                 Toast.LENGTH_SHORT).show();
         customer.getBooks().add(book);
 //        hall.getBooks().add(book);
-        getActivity().getSupportFragmentManager().beginTransaction().replace(Constant.CUSTOMER_CONTENT_ID, Constant.CUSTMOR_HOMEPAGE_FRAGMENT).commit();
+        getActivity().getSupportFragmentManager().beginTransaction().replace(Constants.CUSTOMER_CONTENT_ID, Constants.CUSTMOR_HOMEPAGE_FRAGMENT).commit();
     }
 }

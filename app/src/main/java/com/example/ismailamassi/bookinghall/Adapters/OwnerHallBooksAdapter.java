@@ -1,7 +1,6 @@
 package com.example.ismailamassi.bookinghall.Adapters;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,8 +10,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.ismailamassi.bookinghall.Activites.CustomerMainActivity;
-import com.example.ismailamassi.bookinghall.Helper.Constant;
 import com.example.ismailamassi.bookinghall.Model.Book;
 import com.example.ismailamassi.bookinghall.R;
 import com.squareup.picasso.Picasso;
@@ -38,7 +35,7 @@ public class OwnerHallBooksAdapter extends RecyclerView.Adapter<OwnerHallBooksAd
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final Book book = list.get(position);
-        Picasso.with(context).load(book.getCustomer().getPhoto()).placeholder(R.drawable.bg_circle).error(R.drawable.p16).into(holder.iv_customerPhoto);
+        Picasso.with(context).load(book.getCustomer().getPhoto()).placeholder(R.drawable.placeholder).error(R.drawable.error).into(holder.iv_customerPhoto);
         holder.tv_customerName.setText(book.getCustomer().getFullName());
         holder.tv_bookDate.setText(book.getDate());
         holder.btn_deleteBook.setOnClickListener(new View.OnClickListener() {
@@ -50,14 +47,14 @@ public class OwnerHallBooksAdapter extends RecyclerView.Adapter<OwnerHallBooksAd
                 notifyDataSetChanged();
             }
         });
-        holder.cardViewBook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("hall", book.getHall());
-                ((CustomerMainActivity) context).getSupportFragmentManager().beginTransaction().replace(Constant.CUSTOMER_CONTENT_ID, Constant.HALL_PAGE_FRAGMENT).addToBackStack(Constant.FRAGMENT_LOG).commit();
-            }
-        });
+//        holder.cardViewBook.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Bundle bundle = new Bundle();
+//                bundle.putSerializable("hall", book.getHall());
+//                ((CustomerMainActivity) context).getSupportFragmentManager().beginTransaction().replace(Constants.CUSTOMER_CONTENT_ID, Constants.HALL_PAGE_FRAGMENT).addToBackStack(Constants.FRAGMENT_LOG).commit();
+//            }
+//        });
     }
 
 

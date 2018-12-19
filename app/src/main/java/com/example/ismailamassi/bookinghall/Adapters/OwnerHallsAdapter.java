@@ -10,9 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.ismailamassi.bookinghall.Activites.CustomerMainActivity;
 import com.example.ismailamassi.bookinghall.Activites.OwnerMainActivity;
-import com.example.ismailamassi.bookinghall.Helper.Constant;
+import com.example.ismailamassi.bookinghall.Helper.Constants;
 import com.example.ismailamassi.bookinghall.Model.Hall;
 import com.example.ismailamassi.bookinghall.R;
 import com.squareup.picasso.Picasso;
@@ -39,8 +38,8 @@ public class OwnerHallsAdapter extends RecyclerView.Adapter<OwnerHallsAdapter.My
         final Hall hall = list.get(position);
 
         Picasso.with(context).load(
-                hall.getPhoto()).placeholder(R.drawable.bg_circle)
-                .error(R.drawable.p16).into(holder.iv_hallPhoto);
+                hall.getPhoto()).placeholder(R.drawable.placeholder)
+                .error(R.drawable.error).into(holder.iv_hallPhoto);
         holder.tv_hallName.setText(hall.getName());
         holder.tv_numBook.setText(hall.getBooks().size() + "");
         holder.card_ownerHall.setOnClickListener(new View.OnClickListener() {
@@ -48,8 +47,8 @@ public class OwnerHallsAdapter extends RecyclerView.Adapter<OwnerHallsAdapter.My
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("hall", hall);
-                Constant.OWNER_HOMEPAGE_FRAGMENT.setArguments(bundle);
-                ((OwnerMainActivity) context).getSupportFragmentManager().beginTransaction().replace(Constant.OWNER_CONTENT_ID, Constant.OWNER_HALL_BOOKS_FRAGMENT).addToBackStack(Constant.FRAGMENT_LOG).commit();
+                Constants.OWNER_HOMEPAGE_FRAGMENT.setArguments(bundle);
+                ((OwnerMainActivity) context).getSupportFragmentManager().beginTransaction().replace(Constants.OWNER_CONTENT_ID, Constants.OWNER_HALL_BOOKS_FRAGMENT).addToBackStack(Constants.FRAGMENT_LOG).commit();
             }
         });
     }

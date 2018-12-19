@@ -1,12 +1,18 @@
 package com.example.ismailamassi.bookinghall.Helper;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.ismailamassi.bookinghall.Helper.Constant;
+import com.example.ismailamassi.bookinghall.Activites.CustomerMainActivity;
+import com.example.ismailamassi.bookinghall.Activites.MainActivity;
+import com.example.ismailamassi.bookinghall.Activites.OwnerMainActivity;
 import com.example.ismailamassi.bookinghall.Model.Book;
 import com.example.ismailamassi.bookinghall.Model.Customer;
 import com.example.ismailamassi.bookinghall.Model.Hall;
@@ -64,7 +70,7 @@ public class SystemControl {
     }
 
     public static void startFragment(AppCompatActivity activity, int containerId, Fragment fragment) {
-        activity.getSupportFragmentManager().beginTransaction().replace(containerId, fragment).addToBackStack(Constant.FRAGMENT_LOG).commit();
+        activity.getSupportFragmentManager().beginTransaction().replace(containerId, fragment).addToBackStack(Constants.FRAGMENT_LOG).commit();
     }
 
     public static String getStringFromEditText(EditText editText) {
@@ -106,6 +112,22 @@ public class SystemControl {
             }
         }
         return tmp;
+    }
+
+    public static void launchMainActivity(Context activity, FragmentManager fragmentManager, User user) {
+        PrefManager prefManager = new PrefManager(activity);
+        if (user instanceof Customer) {
+            Intent mainIntent = new Intent(activity, CustomerMainActivity.class);
+            prefManager.setCurrentUser(user);
+            activity.startActivity(mainIntent);
+        } else if (user instanceof Owner) {
+            Intent mainIntent = new Intent(activity, OwnerMainActivity.class);
+            prefManager.setCurrentUser(user);
+            activity.startActivity(mainIntent);
+        } else if (user == null) {
+            fragmentManager.beginTransaction().replace(Constants.CONTAINER_ID, Constants.LOGIN_FRAGMENT).addToBackStack(Constants.FRAGMENT_LOG).commit();
+        }
+
     }
 
 }

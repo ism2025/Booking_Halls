@@ -15,7 +15,8 @@ import android.widget.Toast;
 
 import com.example.ismailamassi.bookinghall.Activites.CustomerMainActivity;
 import com.example.ismailamassi.bookinghall.Activites.OwnerMainActivity;
-import com.example.ismailamassi.bookinghall.Helper.Constant;
+import com.example.ismailamassi.bookinghall.Helper.Constants;
+import com.example.ismailamassi.bookinghall.Helper.PrefManager;
 import com.example.ismailamassi.bookinghall.Model.Customer;
 import com.example.ismailamassi.bookinghall.Model.Owner;
 import com.example.ismailamassi.bookinghall.R;
@@ -31,6 +32,7 @@ public class LoginFragment extends Fragment {
     EditText et_username, et_password;
     TextView tv_forgetPassword, tv_createAccount;
     Button btn_login;
+    PrefManager prefManager;
 
     Intent mainIntent;
 
@@ -48,12 +50,8 @@ public class LoginFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mainIntent = new Intent(getActivity(), CustomerMainActivity.class);
-        if (mainIntent.hasExtra("customer")) {
-            mainIntent.removeExtra("customer");
-        } else if (mainIntent.hasExtra("owner")) {
-            mainIntent.removeExtra("owner");
-        }
+        prefManager = new PrefManager(getContext());
+
         onClickItems();
     }
 
@@ -75,19 +73,20 @@ public class LoginFragment extends Fragment {
                 Owner owner = SystemControl.getOwnerByEmail(username);
                 if (customer != null) {
                     if (customer.getPassword().equals(password)) {
-                        mainIntent.putExtra("user", customer);
-                        mainIntent.putExtra("customer", "customer");
-                        startActivity(mainIntent);
+                        prefManager.setSignin(true);
+                        prefManager.setCurrentUser(null);
+                        prefManager.setCurrentUser(customer);
+                        SystemControl.launchMainActivity(getContext().getApplicationContext(), getFragmentManager(), customer);
                         getActivity().finish();
                     } else {
                         Toast.makeText(getActivity(), "Password is not match please check Password .", Toast.LENGTH_SHORT).show();
                     }
                 } else if (owner != null) {
                     if (owner.getPassword().equals(password)) {
-                        mainIntent = new Intent(getActivity(), OwnerMainActivity.class);
-                        mainIntent.putExtra("user", owner);
-                        mainIntent.putExtra("owner", "owner");
-                        startActivity(mainIntent);
+                        prefManager.setSignin(true);
+                        prefManager.setCurrentUser(null);
+                        prefManager.setCurrentUser(owner);
+                        SystemControl.launchMainActivity(getContext().getApplicationContext(), getFragmentManager(), owner);
                         getActivity().finish();
                     } else {
                         Toast.makeText(getActivity(), "Password is not match please check Password .", Toast.LENGTH_SHORT).show();
@@ -104,14 +103,14 @@ public class LoginFragment extends Fragment {
         tv_createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(Constant.CONTAINER_ID, Constant.SIGN_UP_FRAGMENT).addToBackStack(Constant.FRAGMENT_LOG).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(Constants.CONTAINER_ID, Constants.SIGN_UP_FRAGMENT).addToBackStack(Constants.FRAGMENT_LOG).commit();
             }
         });
 
         tv_forgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(Constant.CONTAINER_ID, Constant.FORGET_PASSWORD_FRAGMENT).addToBackStack(Constant.FRAGMENT_LOG).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(Constants.CONTAINER_ID, Constants.FORGET_PASSWORD_FRAGMENT).addToBackStack(Constants.FRAGMENT_LOG).commit();
             }
         });
 

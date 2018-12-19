@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ismailamassi.bookinghall.Activites.CustomerMainActivity;
-import com.example.ismailamassi.bookinghall.Helper.Constant;
+import com.example.ismailamassi.bookinghall.Helper.Constants;
 import com.example.ismailamassi.bookinghall.Model.Book;
 import com.example.ismailamassi.bookinghall.R;
 import com.squareup.picasso.Picasso;
@@ -38,7 +38,7 @@ public class CustomerBooksAdapter extends RecyclerView.Adapter<CustomerBooksAdap
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final Book book = list.get(position);
-        Picasso.with(context).load(book.getHall().getPhoto()).placeholder(R.drawable.bg_circle).error(R.drawable.p16).into(holder.iv_hallPhoto);
+        Picasso.with(context).load(book.getHall().getPhoto()).placeholder(R.drawable.placeholder).error(R.drawable.error).into(holder.iv_hallPhoto);
         holder.tv_hallName.setText(book.getHall().getName());
         holder.tv_bookDate.setText(book.getDate());
         holder.btn_deleteBook.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +55,7 @@ public class CustomerBooksAdapter extends RecyclerView.Adapter<CustomerBooksAdap
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("hall", book.getHall());
-                ((CustomerMainActivity) context).getSupportFragmentManager().beginTransaction().replace(Constant.CUSTOMER_CONTENT_ID, Constant.HALL_PAGE_FRAGMENT).addToBackStack(Constant.FRAGMENT_LOG).commit();
+                ((CustomerMainActivity) context).getSupportFragmentManager().beginTransaction().replace(Constants.CUSTOMER_CONTENT_ID, Constants.HALL_PAGE_FRAGMENT).addToBackStack(Constants.FRAGMENT_LOG).commit();
             }
         });
     }

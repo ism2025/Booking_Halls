@@ -13,7 +13,9 @@ public class Hall implements Serializable {
     private float rate;
     private String phoneNumber;
     private String photo;
+    private int price;
     private ArrayList<Book> books;
+
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -23,7 +25,7 @@ public class Hall implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public Hall(int id, String name, String phoneNumber, String photo, String location, float rate, int ownerId) {
+    public Hall(int id, String name, String phoneNumber, String photo, String location, float rate, int price, int ownerId) {
         if (SystemControl.allHalls.size() > 1) {
             this.setId((SystemControl.allHalls.get(SystemControl.allHalls.size() - 1).getId()) + 1);
         } else {
@@ -33,6 +35,7 @@ public class Hall implements Serializable {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.rate = rate;
+        this.price = price;
         this.photo = photo;
         this.location = location;
         books = new ArrayList<>();
@@ -78,6 +81,14 @@ public class Hall implements Serializable {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public String getLocation() {

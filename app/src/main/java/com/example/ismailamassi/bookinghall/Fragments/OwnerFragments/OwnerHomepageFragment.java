@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.ismailamassi.bookinghall.Adapters.OwnerHallsAdapter;
+import com.example.ismailamassi.bookinghall.Helper.PrefManager;
 import com.example.ismailamassi.bookinghall.Model.Customer;
 import com.example.ismailamassi.bookinghall.Model.Owner;
 import com.example.ismailamassi.bookinghall.Model.User;
@@ -46,7 +47,8 @@ public class OwnerHomepageFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        owner = (Owner) getActivity().getIntent().getSerializableExtra("user");
+        PrefManager prefManager = new PrefManager(getContext());
+        owner = (Owner) prefManager.getCurrnetUser();
         if (owner.getHalls().size() == 0) {
             rv_ownerHalls.setVisibility(View.GONE);
             iv_emptystat.setVisibility(View.VISIBLE);

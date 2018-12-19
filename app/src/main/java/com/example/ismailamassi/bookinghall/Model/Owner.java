@@ -23,10 +23,10 @@ public class Owner extends User implements Serializable {
         } else {
             this.setId(1);
         }
+        halls = new ArrayList<>();
 
         SystemControl.allOwners.add(this);
         SystemControl.allUsers.add(this);
-        halls = new ArrayList<>();
     }
 
 }

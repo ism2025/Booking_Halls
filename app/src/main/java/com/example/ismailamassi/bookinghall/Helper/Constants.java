@@ -14,14 +14,24 @@ import com.example.ismailamassi.bookinghall.Fragments.LoginSystemFragments.Signu
 import com.example.ismailamassi.bookinghall.Fragments.OwnerFragments.OwnerHallBooksFragment;
 import com.example.ismailamassi.bookinghall.Fragments.OwnerFragments.OwnerHallsFragment;
 import com.example.ismailamassi.bookinghall.Fragments.OwnerFragments.OwnerHomepageFragment;
+import com.example.ismailamassi.bookinghall.Fragments.OwnerFragments.OwnerNewHallFragment;
 import com.example.ismailamassi.bookinghall.R;
 
 //
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
-public class Constant {
+public class Constants {
+    public static final String PREF_NAME = "introSP";
     public static final String FRAGMENT_LOG = "fragment_log";
     public static final String USER_FORGET_PASSWORD = "userForgetPassword";
+    public static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
+    public static final String IS_SIGN_IN = "IsSignIn";
+    public static final String CURRENT_USER_TYPE = "currentUser";
+    public static final String USER_ID = "";
+    public static final int CUSTOMER_ROLE = 1;
+    public static final int OWNER_ROLE = 2;
+
+    //Containers
     public static final int CONTAINER_ID = R.id.containerView;
     public static final int CUSTOMER_CONTENT_ID = R.id.contentLayoutForCustemor;
     public static final int OWNER_CONTENT_ID = R.id.contentLayoutForOwner;
@@ -40,6 +50,7 @@ public class Constant {
     public static final OwnerHomepageFragment OWNER_HOMEPAGE_FRAGMENT = new OwnerHomepageFragment();
     public static final OwnerHallsFragment OWNER_HALLS_FRAGMENT = new OwnerHallsFragment();
     public static final OwnerHallBooksFragment OWNER_HALL_BOOKS_FRAGMENT = new OwnerHallBooksFragment();
+    public static final OwnerNewHallFragment OWNER_NEW_HALL_FRAGMENT = new OwnerNewHallFragment();
 
     //Common Fragments
     public static final AboutFragment ABOUT_FRAGMENT = new AboutFragment();

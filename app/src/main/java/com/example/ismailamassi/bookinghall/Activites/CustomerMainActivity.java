@@ -14,7 +14,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.ismailamassi.bookinghall.Helper.Constant;
+import com.example.ismailamassi.bookinghall.Helper.Constants;
+import com.example.ismailamassi.bookinghall.Helper.PrefManager;
 import com.example.ismailamassi.bookinghall.Model.Customer;
 import com.example.ismailamassi.bookinghall.R;
 
@@ -26,6 +27,8 @@ public class CustomerMainActivity extends AppCompatActivity {
     View navHeader;
     ImageView iv_userPhoto;
     TextView tv_username, tv_accountType;
+
+    PrefManager prefManager;
 
     private static final String TAG_HOMEPAGE = "homePage";
     private static final String TAG_PROFILE = "profile";
@@ -44,12 +47,7 @@ public class CustomerMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_main);
-
-        if (getIntent() != null && getIntent().hasExtra("user")) {
-            Customer customer = (Customer) getIntent().getSerializableExtra("user");
-//            tv_username.setText(user.getfName() + " " + user.getlName());
-//            tv_accountType.setText("Customer");
-        }
+        prefManager = new PrefManager(CustomerMainActivity.this);
         bindViews();
         mHandler = new Handler();
         setUpNavigationView();
@@ -112,7 +110,7 @@ public class CustomerMainActivity extends AppCompatActivity {
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
                         android.R.anim.fade_out);
-                fragmentTransaction.replace(Constant.CUSTOMER_CONTENT_ID, fragment, CURRENT_TAG);
+                fragmentTransaction.replace(Constants.CUSTOMER_CONTENT_ID, fragment, CURRENT_TAG);
                 fragmentTransaction.commitAllowingStateLoss();
             }
         };
@@ -172,6 +170,7 @@ public class CustomerMainActivity extends AppCompatActivity {
                         CURRENT_TAG = TAG_PRIVACY_POLICY;
                         break;
                     case R.id.signOut:
+                        prefManager.setSignin(false);
                         startActivity(new Intent(CustomerMainActivity.this, MainActivity.class));
                         finish();
                         break;
@@ -180,7 +179,7 @@ public class CustomerMainActivity extends AppCompatActivity {
                         sendIntent.setAction(Intent.ACTION_SEND);
                         sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
                         sendIntent.setType("text/plain");
-                        Intent.createChooser(sendIntent,"Ismail Amassi");
+                        Intent.createChooser(sendIntent, "Ismail Amassi");
                         startActivityForResult(sendIntent, 2);
                     default:
                         navItemIndex = 0;
@@ -206,24 +205,24 @@ public class CustomerMainActivity extends AppCompatActivity {
         switch (navItemIndex) {
             case 0:
                 // home
-                return Constant.CUSTMOR_HOMEPAGE_FRAGMENT;
+                return Constants.CUSTMOR_HOMEPAGE_FRAGMENT;
             case 1:
                 // profile
-                return Constant.CUSTMOR_PROFILE_FRAGMENT;
+                return Constants.CUSTMOR_PROFILE_FRAGMENT;
             case 2:
                 //settings
-                return Constant.CUSTMOR_SETTINGS_FRAGMENT;
+                return Constants.CUSTMOR_SETTINGS_FRAGMENT;
             case 3:
                 // books
-                return Constant.CUSTMOR_BOOKS_FRAGMENT;
+                return Constants.CUSTMOR_BOOKS_FRAGMENT;
             case 4:
                 // about
-                return Constant.ABOUT_FRAGMENT;
+                return Constants.ABOUT_FRAGMENT;
             case 5:
                 // privacy policy
-                return Constant.PRIVACY_POLICY_FRAGMENT;
+                return Constants.PRIVACY_POLICY_FRAGMENT;
             default:
-                return Constant.CUSTMOR_HOMEPAGE_FRAGMENT;
+                return Constants.CUSTMOR_HOMEPAGE_FRAGMENT;
         }
     }
 
