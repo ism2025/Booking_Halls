@@ -80,4 +80,8 @@ public abstract class User implements Serializable {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
+
+    public String getFullName() {
+        return getfName() + " " + getlName();
+    }
 }

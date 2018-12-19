@@ -19,23 +19,24 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/iv_hallPhoto"
+                android:id="@+id/iv_customerPhoto"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
+                android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_hallName"
+                android:id="@+id/tv_customerName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="6dp"
                 android:text="TextView"
                 android:textSize="24sp"
-                app:layout_constraintStart_toEndOf="@+id/iv_hallPhoto"
-                app:layout_constraintTop_toTopOf="@+id/iv_hallPhoto" />
+                app:layout_constraintStart_toEndOf="@+id/iv_customerPhoto"
+                app:layout_constraintTop_toTopOf="@+id/iv_customerPhoto" />
 
             <TextView
                 android:id="@+id/tv_bookDate"
@@ -43,8 +44,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Book Date"
-                app:layout_constraintStart_toStartOf="@+id/tv_hallName"
-                app:layout_constraintTop_toBottomOf="@+id/tv_hallName" />
+                app:layout_constraintStart_toStartOf="@+id/tv_customerName"
+                app:layout_constraintTop_toBottomOf="@+id/tv_customerName" />
 
             <Button
                 android:id="@+id/btn_deleteBook"

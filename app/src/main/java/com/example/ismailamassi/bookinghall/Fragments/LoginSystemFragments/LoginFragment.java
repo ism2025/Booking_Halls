@@ -1,12 +1,10 @@
 package com.example.ismailamassi.bookinghall.Fragments.LoginSystemFragments;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ismailamassi.bookinghall.Activites.CustomerMainActivity;
+import com.example.ismailamassi.bookinghall.Activites.OwnerMainActivity;
 import com.example.ismailamassi.bookinghall.Helper.Constant;
 import com.example.ismailamassi.bookinghall.Model.Customer;
 import com.example.ismailamassi.bookinghall.Model.Owner;
-import com.example.ismailamassi.bookinghall.Model.User;
 import com.example.ismailamassi.bookinghall.R;
 
 import com.example.ismailamassi.bookinghall.Helper.SystemControl;
@@ -34,7 +32,7 @@ public class LoginFragment extends Fragment {
     TextView tv_forgetPassword, tv_createAccount;
     Button btn_login;
 
-    Intent customerIntent;
+    Intent mainIntent;
 
     public LoginFragment() {
     }
@@ -50,7 +48,12 @@ public class LoginFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        mainIntent = new Intent(getActivity(), CustomerMainActivity.class);
+        if (mainIntent.hasExtra("customer")) {
+            mainIntent.removeExtra("customer");
+        } else if (mainIntent.hasExtra("owner")) {
+            mainIntent.removeExtra("owner");
+        }
         onClickItems();
     }
 
@@ -72,17 +75,20 @@ public class LoginFragment extends Fragment {
                 Owner owner = SystemControl.getOwnerByEmail(username);
                 if (customer != null) {
                     if (customer.getPassword().equals(password)) {
-                        customerIntent = new Intent(getActivity(), CustomerMainActivity.class);
-                        customerIntent.putExtra("user", customer);
-                        startActivityForResult(customerIntent, 2);
+                        mainIntent.putExtra("user", customer);
+                        mainIntent.putExtra("customer", "customer");
+                        startActivity(mainIntent);
+                        getActivity().finish();
                     } else {
                         Toast.makeText(getActivity(), "Password is not match please check Password .", Toast.LENGTH_SHORT).show();
                     }
                 } else if (owner != null) {
                     if (owner.getPassword().equals(password)) {
-                        customerIntent = new Intent(getActivity(), CustomerMainActivity.class);
-                        customerIntent.putExtra("user", owner);
-//                        startActivityForResult(customerIntent, 2);
+                        mainIntent = new Intent(getActivity(), OwnerMainActivity.class);
+                        mainIntent.putExtra("user", owner);
+                        mainIntent.putExtra("owner", "owner");
+                        startActivity(mainIntent);
+                        getActivity().finish();
                     } else {
                         Toast.makeText(getActivity(), "Password is not match please check Password .", Toast.LENGTH_SHORT).show();
                     }

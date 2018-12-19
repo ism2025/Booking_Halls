@@ -19,11 +19,11 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class HallsAdapter extends RecyclerView.Adapter<HallsAdapter.MyViewHolder> {
+public class CustomerHallsAdapter extends RecyclerView.Adapter<CustomerHallsAdapter.MyViewHolder> {
     private Context context;
     private ArrayList<Hall> halls;
 
-    public HallsAdapter(Context context, ArrayList<Hall> halls) {
+    public CustomerHallsAdapter(Context context, ArrayList<Hall> halls) {
         this.context = context;
         this.halls = halls;
     }
@@ -41,7 +41,7 @@ public class HallsAdapter extends RecyclerView.Adapter<HallsAdapter.MyViewHolder
 //        } else {
 //            // inflate your second item layout & return that viewHolder
 //        }
-        View view = LayoutInflater.from(context).inflate(R.layout.item_hall, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_customer_hall, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -49,8 +49,8 @@ public class HallsAdapter extends RecyclerView.Adapter<HallsAdapter.MyViewHolder
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final Hall hall = halls.get(position);
         Picasso.with(context).load(
-                hall.getPhoto()
-        ).placeholder(R.drawable.bg_circle).error(R.drawable.p16).into(holder.iv_hallPhoto);
+                hall.getPhoto()).placeholder(R.drawable.bg_circle)
+                .error(R.drawable.p16).into(holder.iv_hallPhoto);
 
         holder.tv_hallName.setText(hall.getName());
         holder.rb_hallRate.setRating(hall.getRate());
@@ -60,7 +60,7 @@ public class HallsAdapter extends RecyclerView.Adapter<HallsAdapter.MyViewHolder
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("hall", hall);
                 Constant.HALL_PAGE_FRAGMENT.setArguments(bundle);
-                ((CustomerMainActivity) context).getSupportFragmentManager().beginTransaction().replace(Constant.CONTENT_ID, Constant.HALL_PAGE_FRAGMENT).addToBackStack(Constant.FRAGMENT_LOG).commit();
+                ((CustomerMainActivity) context).getSupportFragmentManager().beginTransaction().replace(Constant.CUSTOMER_CONTENT_ID, Constant.HALL_PAGE_FRAGMENT).addToBackStack(Constant.FRAGMENT_LOG).commit();
             }
         });
     }

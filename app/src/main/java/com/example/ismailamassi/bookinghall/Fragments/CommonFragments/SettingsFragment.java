@@ -1,8 +1,6 @@
-package com.example.ismailamassi.bookinghall.Fragments.CustomerFragments;
+package com.example.ismailamassi.bookinghall.Fragments.CommonFragments;
 
 
-import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,29 +13,26 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.example.ismailamassi.bookinghall.Activites.MainActivity;
 import com.example.ismailamassi.bookinghall.R;
-
-import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CustomerSettingsFragment extends Fragment {
+public class SettingsFragment extends Fragment {
 
     Switch notification_switch;
     Spinner spinner_lang;
 
     String languageToLoad;
 
-    public CustomerSettingsFragment() {
+    public SettingsFragment() {
         // Required empty public constructor
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_customer_settings, container, false);
+        View view = inflater.inflate(R.layout.fragment_settings, container, false);
         bindView(view);
         return view;
     }

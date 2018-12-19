@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.CustomerFragments.CustomerBooksFragment">
+    tools:context=".Fragments.OwnerFragments.OwnerHomepageFragment">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -12,12 +12,16 @@
         android:visibility="visible">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_customerBooks"
+            android:id="@+id/rv_ownerHalls"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:foregroundGravity="center"
-            android:visibility="visible" />
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_emptystat"
@@ -26,9 +30,8 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="124dp"
-            android:src="@drawable/ic_move_to_inbox_black_24dp"
+            android:src="@drawable/ic_store_mall_directory_black_24dp"
             app:civ_border_color="#AAAAAA"
-
             app:civ_border_width="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,23 +42,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:text="No Book  Show Hall"
+            android:text="You Dont Hava Any Halls Add from bottom "
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="@+id/iv_emptystat"
             app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="@+id/iv_emptystat"
             app:layout_constraintTop_toBottomOf="@+id/iv_emptystat" />
 
-        <Button
-            android:id="@+id/btn_viewHalls"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="View Halls"
-            app:layout_constraintEnd_toEndOf="@+id/tv_emptystat"
-            app:layout_constraintStart_toStartOf="@+id/tv_emptystat"
-            app:layout_constraintTop_toBottomOf="@+id/tv_emptystat" />
     </android.support.constraint.ConstraintLayout>
+
+
 </FrameLayout>

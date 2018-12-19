@@ -36,6 +36,7 @@ public class Hall implements Serializable {
         this.photo = photo;
         this.location = location;
         books = new ArrayList<>();
+        owner.getHalls().add(this);
         SystemControl.allHalls.add(this);
     }
 

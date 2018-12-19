@@ -5,12 +5,15 @@ import com.example.ismailamassi.bookinghall.Fragments.CommonFragments.HallPageFr
 import com.example.ismailamassi.bookinghall.Fragments.CommonFragments.PrivacyPolicyFragment;
 import com.example.ismailamassi.bookinghall.Fragments.CustomerFragments.CustomerBooksFragment;
 import com.example.ismailamassi.bookinghall.Fragments.CustomerFragments.CustomerHomepageFragment;
-import com.example.ismailamassi.bookinghall.Fragments.CustomerFragments.CustomerProfileFragment;
-import com.example.ismailamassi.bookinghall.Fragments.CustomerFragments.CustomerSettingsFragment;
+import com.example.ismailamassi.bookinghall.Fragments.CommonFragments.ProfileFragment;
+import com.example.ismailamassi.bookinghall.Fragments.CommonFragments.SettingsFragment;
 import com.example.ismailamassi.bookinghall.Fragments.LoginSystemFragments.ForgetPasswordFragment;
 import com.example.ismailamassi.bookinghall.Fragments.LoginSystemFragments.LoginFragment;
 import com.example.ismailamassi.bookinghall.Fragments.LoginSystemFragments.ResetPasswordFragment;
 import com.example.ismailamassi.bookinghall.Fragments.LoginSystemFragments.SignupFragment;
+import com.example.ismailamassi.bookinghall.Fragments.OwnerFragments.OwnerHallBooksFragment;
+import com.example.ismailamassi.bookinghall.Fragments.OwnerFragments.OwnerHallsFragment;
+import com.example.ismailamassi.bookinghall.Fragments.OwnerFragments.OwnerHomepageFragment;
 import com.example.ismailamassi.bookinghall.R;
 
 //
@@ -20,24 +23,30 @@ public class Constant {
     public static final String FRAGMENT_LOG = "fragment_log";
     public static final String USER_FORGET_PASSWORD = "userForgetPassword";
     public static final int CONTAINER_ID = R.id.containerView;
-    public static final int CONTENT_ID = R.id.contentLayout;
+    public static final int CUSTOMER_CONTENT_ID = R.id.contentLayoutForCustemor;
+    public static final int OWNER_CONTENT_ID = R.id.contentLayoutForOwner;
 
     //SignIn & Up Fragments
     public static final LoginFragment LOGIN_FRAGMENT = new LoginFragment();
     public static final SignupFragment SIGN_UP_FRAGMENT = new SignupFragment();
     public static final ForgetPasswordFragment FORGET_PASSWORD_FRAGMENT = new ForgetPasswordFragment();
     public static final ResetPasswordFragment RESET_PASSWORD_FRAGMENT = new ResetPasswordFragment();
+
     //Customer Fragments
     public static final CustomerHomepageFragment CUSTMOR_HOMEPAGE_FRAGMENT = new CustomerHomepageFragment();
-    public static final CustomerProfileFragment CUSTMOR_PROFILE_FRAGMENT = new CustomerProfileFragment();
-    public static final CustomerSettingsFragment CUSTMOR_SETTINGS_FRAGMENT = new CustomerSettingsFragment();
     public static final CustomerBooksFragment CUSTMOR_BOOKS_FRAGMENT = new CustomerBooksFragment();
+
     //Owner Fragments
+    public static final OwnerHomepageFragment OWNER_HOMEPAGE_FRAGMENT = new OwnerHomepageFragment();
+    public static final OwnerHallsFragment OWNER_HALLS_FRAGMENT = new OwnerHallsFragment();
+    public static final OwnerHallBooksFragment OWNER_HALL_BOOKS_FRAGMENT = new OwnerHallBooksFragment();
 
     //Common Fragments
     public static final AboutFragment ABOUT_FRAGMENT = new AboutFragment();
     public static final PrivacyPolicyFragment PRIVACY_POLICY_FRAGMENT = new PrivacyPolicyFragment();
-    public static final HallPageFragment HALL_PAGE_FRAGMENT= new HallPageFragment();
+    public static final HallPageFragment HALL_PAGE_FRAGMENT = new HallPageFragment();
+    public static final SettingsFragment CUSTMOR_SETTINGS_FRAGMENT = new SettingsFragment();
+    public static final ProfileFragment CUSTMOR_PROFILE_FRAGMENT = new ProfileFragment();
 
 
 }

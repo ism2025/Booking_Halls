@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.ismailamassi.bookinghall.Adapters.HallsAdapter;
+import com.example.ismailamassi.bookinghall.Adapters.CustomerHallsAdapter;
 import com.example.ismailamassi.bookinghall.Helper.SystemControl;
 import com.example.ismailamassi.bookinghall.R;
 
@@ -35,7 +35,7 @@ public class CustomerHomepageFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         rv_customerHomepage.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        HallsAdapter adapter = new HallsAdapter(getActivity(), SystemControl.allHalls);
+        CustomerHallsAdapter adapter = new CustomerHallsAdapter(getActivity(), SystemControl.allHalls);
 //        rv_customerHomepage.
         rv_customerHomepage.setAdapter(adapter);
     }

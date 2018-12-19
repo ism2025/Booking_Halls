@@ -2,7 +2,9 @@ package com.example.ismailamassi.bookinghall.Model;
 
 import com.example.ismailamassi.bookinghall.Helper.SystemControl;
 
-public class Book {
+import java.io.Serializable;
+
+public class Book implements Serializable {
     private int bookId;
     private String date;
     private Customer customer;
@@ -52,4 +54,5 @@ public class Book {
     public void setHall(Hall hall) {
         this.hall = hall;
     }
+
 }

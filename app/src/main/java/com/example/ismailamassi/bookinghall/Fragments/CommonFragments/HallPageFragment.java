@@ -2,7 +2,6 @@ package com.example.ismailamassi.bookinghall.Fragments.CommonFragments;
 
 
 import android.app.DatePickerDialog;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,7 +18,6 @@ import com.example.ismailamassi.bookinghall.Helper.Constant;
 import com.example.ismailamassi.bookinghall.Model.Book;
 import com.example.ismailamassi.bookinghall.Model.Customer;
 import com.example.ismailamassi.bookinghall.Model.Hall;
-import com.example.ismailamassi.bookinghall.Model.User;
 import com.example.ismailamassi.bookinghall.R;
 import com.squareup.picasso.Picasso;
 
@@ -88,9 +86,10 @@ public class HallPageFragment extends Fragment implements DatePickerDialog.OnDat
         bookDate = (dayOfMonth + "-" + month + "-" + year);
         Book book = new Book(1, bookDate, customer.getId(), hall.getId());
         Toast.makeText(getActivity(), "Mission Successfully. Done Add Book Hall "
-                + hall.getName() + " for " + customer.getfName() + " " + customer.getlName() + " ",
+                        + hall.getName() + " for " + customer.getfName() + " " + customer.getlName() + " ",
                 Toast.LENGTH_SHORT).show();
         customer.getBooks().add(book);
-        getActivity().getSupportFragmentManager().beginTransaction().replace(Constant.CONTENT_ID, Constant.CUSTMOR_HOMEPAGE_FRAGMENT).commit();
+//        hall.getBooks().add(book);
+        getActivity().getSupportFragmentManager().beginTransaction().replace(Constant.CUSTOMER_CONTENT_ID, Constant.CUSTMOR_HOMEPAGE_FRAGMENT).commit();
     }
 }

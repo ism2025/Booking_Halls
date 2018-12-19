@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.CustomerFragments.CustomerProfileFragment">
+    tools:context=".Fragments.CommonFragments.ProfileFragment">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -41,7 +41,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Phone"
+            android:text="Phone : "
             android:textAlignment="center"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -114,6 +114,30 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:text="Account Type"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/textView8"
+            app:layout_constraintStart_toStartOf="@+id/textView8"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+        <TextView
+            android:id="@+id/tv_numAllBooks"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Books Number in All Halls"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/textView9"
+            app:layout_constraintStart_toStartOf="@+id/textView9"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="Email"
             android:textAlignment="center"
             android:textSize="18sp"
@@ -123,16 +147,41 @@
 
         <TextView
             android:id="@+id/tv_userEmail"
-            android:layout_width="0dp"
+            android:layout_width="174dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Email Text"
             android:textAlignment="center"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@+id/tv_userCureentBooks"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/tv_userCureentBooks"
             app:layout_constraintTop_toBottomOf="@+id/tv_userCureentBooks" />
+
+        <TextView
+            android:id="@+id/tv_typeAccount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Type"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_userEmail"
+            app:layout_constraintStart_toStartOf="@+id/tv_userEmail"
+            app:layout_constraintTop_toBottomOf="@+id/tv_userEmail" />
+
+
+        <TextView
+            android:id="@+id/tv_numberAllBooks"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Numbers"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_typeAccount"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/tv_typeAccount"
+            app:layout_constraintTop_toBottomOf="@+id/tv_typeAccount" />
 
         <Button
             android:id="@+id/btn_editData"
@@ -140,6 +189,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
             android:text="Edit Data"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

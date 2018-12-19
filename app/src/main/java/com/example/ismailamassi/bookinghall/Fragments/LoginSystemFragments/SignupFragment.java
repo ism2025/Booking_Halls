@@ -17,6 +17,7 @@ import com.example.ismailamassi.bookinghall.Helper.Constant;
 import com.example.ismailamassi.bookinghall.Helper.SystemControl;
 import com.example.ismailamassi.bookinghall.Model.Customer;
 import com.example.ismailamassi.bookinghall.Model.Owner;
+import com.example.ismailamassi.bookinghall.Model.User;
 import com.example.ismailamassi.bookinghall.R;
 
 /**
@@ -82,14 +83,21 @@ public class SignupFragment extends Fragment {
                 String confirmPassword = SystemControl.getStringFromEditText(et_confirmPassword);
                 String phoneNumber = SystemControl.getStringFromEditText(et_phoneNumber);
                 int selectedAccountType = rg_accountType.getCheckedRadioButtonId();
-                if (password.equals(confirmPassword) && fname.length() >= 4 && lname.length() >= 4 && email.length() >= 6 && password.length() >= 6 && phoneNumber.length() >= 10) {
+                boolean isFound = false;
+                for (User user : SystemControl.allUsers) {
+                    if (user.getEmail().equalsIgnoreCase(email)) {
+                        et_email.setError("This Email Is Taken Try another");
+                        isFound = true;
+                    }
+                }
+                if ((!isFound) && password.equals(confirmPassword) && fname.length() >= 4 && lname.length() >= 4 && email.length() >= 6 && password.length() >= 6 && phoneNumber.length() >= 10) {
                     if (selectedAccountType == R.id.rb_customer) {
-                        new Customer(2, fname, lname, email, password, "", phoneNumber);
+                        new Customer(2, fname, lname, email, password, "https://api.androidhive.info/images/glide/large/cacw.jpg", phoneNumber);
                         Toast.makeText(getActivity(), "Create New Account has Successfully .", Toast.LENGTH_SHORT).show();
                         getActivity().getSupportFragmentManager().beginTransaction().replace(Constant.CONTAINER_ID, Constant
                                 .LOGIN_FRAGMENT).addToBackStack(Constant.FRAGMENT_LOG).commit();
                     } else if (selectedAccountType == R.id.rb_owner) {
-                        new Owner(2, fname, lname, email, password, "", phoneNumber);
+                        new Owner(2, fname, lname, email, password, "https://api.androidhive.info/images/glide/large/bourne.jpg", phoneNumber);
                         Toast.makeText(getActivity(), "Create New Account has Successfully .", Toast.LENGTH_SHORT).show();
                         getActivity().getSupportFragmentManager().beginTransaction().replace(Constant.CONTAINER_ID, Constant
                                 .LOGIN_FRAGMENT).addToBackStack(Constant.FRAGMENT_LOG).commit();

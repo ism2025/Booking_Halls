@@ -1,7 +1,9 @@
 package com.example.ismailamassi.bookinghall.Activites;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -15,14 +17,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ismailamassi.bookinghall.Helper.Constant;
-import com.example.ismailamassi.bookinghall.Model.Customer;
 import com.example.ismailamassi.bookinghall.R;
 
-public class CustomerMainActivity extends AppCompatActivity {
+public class OwnerMainActivity extends AppCompatActivity {
+
+
+//
+//    //Store In SharedPreferences
+//    SharedPreferences sharedPreferences = getSharedPreferences("name", MODE_PRIVATE);
+//    SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.putInt("tt", 5645);
+//        editor.putString("ttt", "");
+//        editor.commit(); // (Same) editor.apply();
+//
+//    //get From SharedPreferences
+//    getSharedPreferences("name" ,MODE_PRIVATE).getInt("tt",0);
+//    getSharedPreferences("name" ,MODE_PRIVATE).getString("tt","defalut value");
 
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
+    FloatingActionButton fab;
     View navHeader;
     ImageView iv_userPhoto;
     TextView tv_username, tv_accountType;
@@ -30,7 +45,7 @@ public class CustomerMainActivity extends AppCompatActivity {
     private static final String TAG_HOMEPAGE = "homePage";
     private static final String TAG_PROFILE = "profile";
     private static final String TAG_SETTINGS = "settings";
-    private static final String TAG_BOOKS = "books";
+    private static final String TAG_HALLS = "halls";
     private static final String TAG_ABOUT = "about";
     private static final String TAG_PRIVACY_POLICY = "privacy policy";
     public static String CURRENT_TAG = TAG_HOMEPAGE;
@@ -38,53 +53,26 @@ public class CustomerMainActivity extends AppCompatActivity {
 
     public static int navItemIndex = 0;
     private Handler mHandler;
-//    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_main);
+        setContentView(R.layout.activity_owner_main);
 
-        if (getIntent() != null && getIntent().hasExtra("user")) {
-            Customer customer = (Customer) getIntent().getSerializableExtra("user");
-//            tv_username.setText(user.getfName() + " " + user.getlName());
-//            tv_accountType.setText("Customer");
-        }
         bindViews();
         mHandler = new Handler();
         setUpNavigationView();
-
-
-//        toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
         if (savedInstanceState == null) {
             navItemIndex = 0;
             CURRENT_TAG = TAG_HOMEPAGE;
             loadHomeFragment();
         }
-
-        //        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name) {
-//
-//            @Override
-//            public void onDrawerClosed(View drawerView) {
-//                // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
-//                super.onDrawerClosed(drawerView);
-//            }
-//
-//            @Override
-//            public void onDrawerOpened(View drawerView) {
-//                // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
-//                super.onDrawerOpened(drawerView);
-//            }
-//        };
-//        drawerLayout.setDrawerListener(actionBarDrawerToggle);
-//        actionBarDrawerToggle.syncState();
-
     }
 
     private void bindViews() {
         navigationView = findViewById(R.id.navigationView);
         drawerLayout = findViewById(R.id.drawerLayout);
+        fab = findViewById(R.id.fab);
         navHeader = navigationView.getHeaderView(0);
         iv_userPhoto = navHeader.findViewById(R.id.iv_userPhoto);
         tv_username = navHeader.findViewById(R.id.tv_username);
@@ -95,15 +83,10 @@ public class CustomerMainActivity extends AppCompatActivity {
         // selecting appropriate nav menu item
         selectNavMenu();
 
-        // set toolbar title
-        // toolbar.setTitle(navigationView.getMenu().getItem(navItemIndex).getTitle());
-        // if user select the current navigation menu again, don't do anything
-        // just close the navigation drawer
+
         if (getSupportFragmentManager().findFragmentByTag(CURRENT_TAG) != null) {
             drawerLayout.closeDrawers();
-
         }
-
         Runnable mPendingRunnable = new Runnable() {
             @Override
             public void run() {
@@ -112,7 +95,7 @@ public class CustomerMainActivity extends AppCompatActivity {
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
                         android.R.anim.fade_out);
-                fragmentTransaction.replace(Constant.CUSTOMER_CONTENT_ID, fragment, CURRENT_TAG);
+                fragmentTransaction.replace(Constant.OWNER_CONTENT_ID, fragment, CURRENT_TAG);
                 fragmentTransaction.commitAllowingStateLoss();
             }
         };
@@ -130,6 +113,11 @@ public class CustomerMainActivity extends AppCompatActivity {
 
         // refresh toolbar menu
 //        getActivity().invalidateOptionsMenu();
+
+        if (navItemIndex == 0) {
+            fab.setVisibility(View.VISIBLE);
+        } else
+            fab.setVisibility(View.GONE);
     }
 
     private void selectNavMenu() {
@@ -159,9 +147,9 @@ public class CustomerMainActivity extends AppCompatActivity {
                         navItemIndex = 2;
                         CURRENT_TAG = TAG_SETTINGS;
                         break;
-                    case R.id.books:
+                    case R.id.halls:
                         navItemIndex = 3;
-                        CURRENT_TAG = TAG_BOOKS;
+                        CURRENT_TAG = TAG_HALLS;
                         break;
                     case R.id.about:
                         navItemIndex = 4;
@@ -172,7 +160,7 @@ public class CustomerMainActivity extends AppCompatActivity {
                         CURRENT_TAG = TAG_PRIVACY_POLICY;
                         break;
                     case R.id.signOut:
-                        startActivity(new Intent(CustomerMainActivity.this, MainActivity.class));
+                        startActivity(new Intent(OwnerMainActivity.this, MainActivity.class));
                         finish();
                         break;
                     case R.id.shere:
@@ -180,7 +168,7 @@ public class CustomerMainActivity extends AppCompatActivity {
                         sendIntent.setAction(Intent.ACTION_SEND);
                         sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
                         sendIntent.setType("text/plain");
-                        Intent.createChooser(sendIntent,"Ismail Amassi");
+                        Intent.createChooser(sendIntent, "Ismail Amassi");
                         startActivityForResult(sendIntent, 2);
                     default:
                         navItemIndex = 0;
@@ -206,7 +194,7 @@ public class CustomerMainActivity extends AppCompatActivity {
         switch (navItemIndex) {
             case 0:
                 // home
-                return Constant.CUSTMOR_HOMEPAGE_FRAGMENT;
+                return Constant.OWNER_HOMEPAGE_FRAGMENT;
             case 1:
                 // profile
                 return Constant.CUSTMOR_PROFILE_FRAGMENT;
@@ -215,7 +203,8 @@ public class CustomerMainActivity extends AppCompatActivity {
                 return Constant.CUSTMOR_SETTINGS_FRAGMENT;
             case 3:
                 // books
-                return Constant.CUSTMOR_BOOKS_FRAGMENT;
+                return Constant.OWNER_HOMEPAGE_FRAGMENT;
+//              return Constant.OWNER_HALLS_FRAGMENT;
             case 4:
                 // about
                 return Constant.ABOUT_FRAGMENT;
